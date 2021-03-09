@@ -31,7 +31,7 @@ class YouTubeServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get the package configuration file
+     * Get the package configuration file.
      *
      * @return false|string
      */
