@@ -1,0 +1,28 @@
+{
+    "name": "kodewbit/youtube",
+    "description": "A small library that acts as a Laravel wrapper for YouTube data API v3.",
+    "keywords": ["youtube", "filter", "api"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leonardo Yanes Batista",
+            "email": "leo95batista@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kodewbit\\YouTube\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kodewbit\\YouTube\\YoutubeServiceProvider"
+            ]
+        }
+    }
+}
