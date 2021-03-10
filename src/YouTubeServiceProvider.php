@@ -17,6 +17,16 @@ class YouTubeServiceProvider extends ServiceProvider
     }
 
     /**
+     * Get the package configuration file.
+     *
+     * @return false|string
+     */
+    public function getConfigurationFile()
+    {
+        return realpath($raw = __DIR__ . '/../config/youtube.php') ?: $raw;
+    }
+
+    /**
      * Bootstrap services.
      *
      * @return void
@@ -28,15 +38,5 @@ class YouTubeServiceProvider extends ServiceProvider
                 $this->getConfigurationFile() => config_path('youtube.php')
             ], 'youtube-config');
         }
-    }
-
-    /**
-     * Get the package configuration file.
-     *
-     * @return false|string
-     */
-    public function getConfigurationFile()
-    {
-        return realpath($raw = __DIR__ . '/../config/youtube.php') ?: $raw;
     }
 }
