@@ -2,7 +2,6 @@
 
 namespace Kodewbit\YouTube;
 
-use Google\Client;
 use Google_Client;
 use Google_Service_YouTube;
 use Illuminate\Support\Collection;
@@ -19,13 +18,6 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
     private $client;
 
     /**
-     * The Google Service YouTube.
-     *
-     * @var Google_Service_YouTube
-     */
-    private $service;
-
-    /**
      * YouTube constructor.
      *
      * @param Google_Client $client
@@ -36,45 +28,29 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
         parent::__construct($client, $rootUrl);
 
         $this->client = $this->configureClient($client);
-        $this->service = $this->configureService($this->client);
     }
 
     /**
-     * Setup the Google Client.
+     * Configure the Google API client.
      *
      * @param Google_Client $client
      * @return Google_Client
      */
-    private function configureClient(Google_Client $client)
+    public function configureClient(Google_Client $client)
     {
-        if (!config('youtube.key')) {
+        // Get the developer key provided by the developer. This key is necessary
+        // to make requests to the YouTube API and can be obtained from the
+        // address: https://console.developers.google.com. In case the developer
+        // key is not set, an exception is thrown.
+        $developerKey = config('youtube.key');
+
+        if (!$developerKey) {
             throw InvalidConfigurationException::missingDeveloperKey();
         }
 
-        $client->setDeveloperKey(config('youtube.key'));
+        $client->setDeveloperKey($developerKey);
 
         return $client;
-    }
-
-    /**
-     * Configure Google YouTube Service.
-     *
-     * @param Google_Client $client
-     * @return Google_Service_YouTube
-     */
-    private function configureService(Google_Client $client)
-    {
-        return new Google_Service_YouTube($client);
-    }
-
-    /**
-     * @inheritdoc
-     *
-     * @return Client
-     */
-    public function getClient()
-    {
-        return $this->client;
     }
 
     /**
@@ -84,7 +60,7 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
      */
     public function getService()
     {
-        return $this->service;
+        return new parent($this->client);
     }
 
     /**
@@ -96,8 +72,6 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
      */
     public function search($part, $optParams = [])
     {
-        $response = $this->search->listSearch($part, $optParams);
-
-        return collect($response->getItems());
+        return collect($this->search->listSearch($part, $optParams)->getItems());
     }
 }
