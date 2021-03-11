@@ -12,7 +12,7 @@ use Kodewbit\YouTube\Contracts\YouTube as YouTubeInterface;
  *
  * @method static \Kodewbit\YouTube\YouTube getClient()
  * @method static \Kodewbit\YouTube\YouTube getService()
- * @method static \Kodewbit\YouTube\YouTube search($part, $optParams = array())
+ * @method static \Kodewbit\YouTube\YouTube search($part, $optParams = [])
  */
 class YouTube extends Facade
 {

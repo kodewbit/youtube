@@ -94,7 +94,7 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
      * @param array $optParams
      * @return Collection
      */
-    public function search($part, $optParams = array())
+    public function search($part, $optParams = [])
     {
         $response = $this->search->listSearch($part, $optParams);
 

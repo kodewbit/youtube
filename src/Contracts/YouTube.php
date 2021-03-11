@@ -29,5 +29,5 @@ interface YouTube
      * @param array $optParams
      * @return Google_Service_YouTube_SearchListResponse
      */
-    public function search($part, $optParams = array());
+    public function search($part, $optParams = []);
 }
