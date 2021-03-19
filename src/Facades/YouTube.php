@@ -13,8 +13,8 @@ use Kodewbit\YouTube\Contracts\YouTube as YouTubeInterface;
  * @method static \Kodewbit\YouTube\YouTube api()
  * @method static \Kodewbit\YouTube\YouTube search(string $string, $part = [], $optParams = [])
  * @method static \Kodewbit\YouTube\YouTube getResourceId(string $url)
- * @method static \Kodewbit\YouTube\YouTube getChannel($channel, $part = [], $optParams = [])
  * @method static \Kodewbit\YouTube\YouTube getChannelVideos(string $channel, $part = [], $optParams = [])
+ * @method static \Kodewbit\YouTube\YouTube getChannelDetails($channel, $part = [], $optParams = [])
  */
 class YouTube extends Facade
 {

@@ -35,16 +35,6 @@ interface YouTube
     public function getResourceId(string $url);
 
     /**
-     * Get information about one or more channels using their id.
-     *
-     * @param $channel
-     * @param array $part
-     * @param array $optParams
-     * @return Collection|Google_Service_YouTube_ChannelListResponse[]
-     */
-    public function getChannel($channel, $part = [], $optParams = []);
-
-    /**
      * Get videos from a given channel.
      *
      * @param string $channel
@@ -53,4 +43,14 @@ interface YouTube
      * @return Collection|Google_Service_YouTube_SearchListResponse[]
      */
     public function getChannelVideos(string $channel, $part = [], $optParams = []);
+
+    /**
+     * Get information about one or more channels using their id.
+     *
+     * @param $channel
+     * @param array $part
+     * @param array $optParams
+     * @return Collection|Google_Service_YouTube_ChannelListResponse[]
+     */
+    public function getChannelDetails($channel, $part = [], $optParams = []);
 }
