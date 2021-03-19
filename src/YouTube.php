@@ -101,12 +101,36 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
     /**
      * @inheritdoc
      *
+     * @param string $channel
+     * @param array $part
+     * @param array $optParams
+     * @return Google_Service_YouTube_SearchListResponse[]|Collection
+     */
+    public function getChannelVideos(string $channel, $part = [], $optParams = [])
+    {
+        $part = array_merge($part, [
+            'id',
+            'snippet'
+        ]);
+
+        $optParams = array_merge($optParams, [
+            'type' => 'video',
+            'order' => 'date',
+            'channelId' => $channel
+        ]);
+
+        return collect($this->search->listSearch($part, $optParams)->getItems());
+    }
+
+    /**
+     * @inheritdoc
+     *
      * @param $channel
      * @param array $part
      * @param array $optParams
      * @return Collection|Google_Service_YouTube_ChannelListResponse[]
      */
-    public function getChannel($channel, $part = [], $optParams = [])
+    public function getChannelDetails($channel, $part = [], $optParams = [])
     {
         // This method allows obtaining information about one or more channels
         // from their id. In the case that you pass an iterable object with
@@ -130,29 +154,5 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
         ]);
 
         return collect($this->channels->listChannels($part, $optParams)->getItems());
-    }
-
-    /**
-     * @inheritdoc
-     *
-     * @param string $channel
-     * @param array $part
-     * @param array $optParams
-     * @return Google_Service_YouTube_SearchListResponse[]|Collection
-     */
-    public function getChannelVideos(string $channel, $part = [], $optParams = [])
-    {
-        $part = array_merge($part, [
-            'id',
-            'snippet'
-        ]);
-
-        $optParams = array_merge($optParams, [
-            'type' => 'video',
-            'order' => 'date',
-            'channelId' => $channel
-        ]);
-
-        return collect($this->search->listSearch($part, $optParams)->getItems());
     }
 }
