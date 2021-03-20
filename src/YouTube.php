@@ -5,6 +5,7 @@ namespace Kodewbit\YouTube;
 use Google_Client;
 use Google_Service_YouTube;
 use Google_Service_YouTube_ChannelListResponse;
+use Google_Service_YouTube_PlaylistListResponse;
 use Google_Service_YouTube_SearchListResponse;
 use Illuminate\Support\Collection;
 use Kodewbit\YouTube\Contracts\YouTube as YouTubeInterface;
@@ -154,5 +155,28 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
         ]);
 
         return collect($this->channels->listChannels($part, $optParams)->getItems());
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @param $channel
+     * @param array $part
+     * @param array $optParams
+     * @return Collection|Google_Service_YouTube_PlaylistListResponse[]
+     */
+    public function getChannelPlaylists($channel, $part = [], $optParams = [])
+    {
+        $part = array_merge($part, [
+            'id',
+            'snippet',
+            'status'
+        ]);
+
+        $optParams = array_merge($optParams, [
+            'channelId' => $channel
+        ]);
+
+        return collect($this->playlists->listPlaylists($part, $optParams)->getItems());
     }
 }
