@@ -4,6 +4,7 @@ namespace Kodewbit\YouTube\Contracts;
 
 use Google_Service_YouTube;
 use Google_Service_YouTube_ChannelListResponse;
+use Google_Service_YouTube_PlaylistListResponse;
 use Google_Service_YouTube_SearchListResponse;
 use Illuminate\Support\Collection;
 
@@ -53,4 +54,14 @@ interface YouTube
      * @return Collection|Google_Service_YouTube_ChannelListResponse[]
      */
     public function getChannelDetails($channel, $part = [], $optParams = []);
+
+    /**
+     * Get the playlists of a given channel.
+     *
+     * @param $channel
+     * @param array $part
+     * @param array $optParams
+     * @return Collection|Google_Service_YouTube_PlaylistListResponse[]
+     */
+    public function getChannelPlaylists($channel, $part = [], $optParams = []);
 }
