@@ -50,7 +50,7 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
         if ($developerKey) {
             $client->setDeveloperKey($developerKey);
         } else {
-            throw InvalidConfigurationException::missingDeveloperKey();
+            throw InvalidConfigurationException::missingKey();
         }
 
         return $client;
