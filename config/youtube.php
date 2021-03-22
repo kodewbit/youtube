@@ -12,5 +12,17 @@ return [
     | https://console.developers.google.com
     |
     */
-    'key' => env('YOUTUBE_API_KEY', '')
+    'key' => env('YOUTUBE_API_KEY', ''),
+
+    /*
+    |--------------------------------------------------------------------------
+    | APPLICATION NAME
+    |--------------------------------------------------------------------------
+    |
+    | Here you can define the name of the application. This name is the one
+    | used to identify the requests. This is usually the name of a project that
+    | you create using the Google console.
+    |
+    */
+    'name' => env('YOUTUBE_APP_NAME', '')
 ];

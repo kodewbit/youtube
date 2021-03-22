@@ -47,10 +47,21 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
         // key is not set, an exception is thrown.
         $developerKey = config('youtube.key');
 
+        // Get the name of the application. This is necessary to identify the
+        // requests in the Google console. In case the developer does not set
+        // a name for the application, an exception will be thrown.
+        $applicationName = config('youtube.name');
+
         if ($developerKey) {
             $client->setDeveloperKey($developerKey);
         } else {
-            throw InvalidConfigurationException::missingKey();
+            throw InvalidConfigurationException::missingApiKey();
+        }
+
+        if ($applicationName) {
+            $client->setApplicationName($applicationName);
+        } else {
+            throw InvalidConfigurationException::missingApplicationName();
         }
 
         return $client;
