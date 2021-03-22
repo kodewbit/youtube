@@ -19,9 +19,9 @@ return [
     | APPLICATION NAME
     |--------------------------------------------------------------------------
     |
-    | Here you can define the name of the application. This name is the one
-    | used to identify the requests. This is usually the name of a project that
-    | you create using the Google console.
+    | Here you can define the name of the application. This value is included
+    | in the User-Agent HTTP header. Usually this value is the name of a
+    | project that you create using the Google console.
     |
     */
     'name' => env('YOUTUBE_APP_NAME', '')
