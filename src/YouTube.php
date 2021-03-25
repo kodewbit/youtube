@@ -188,4 +188,29 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
 
         return collect($this->playlists->listPlaylists($part, $optParams)->getItems());
     }
+
+    /**
+     * @inheritdoc
+     *
+     * @param string $channel
+     * @param array $part
+     * @param array $optParams
+     * @return Collection
+     */
+    public function getChannelLiveVideos(string $channel, $part = [], $optParams = [])
+    {
+        $part = array_merge($part, [
+            'id',
+            'snippet'
+        ]);
+
+        $optParams = array_merge($optParams, [
+            'type' => 'video',
+            'order' => 'date',
+            'eventType' => 'live',
+            'channelId' => $channel
+        ]);
+
+        return collect($this->search->listSearch($part, $optParams)->getItems());
+    }
 }

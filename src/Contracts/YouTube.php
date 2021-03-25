@@ -64,4 +64,14 @@ interface YouTube
      * @return Collection|Google_Service_YouTube_PlaylistListResponse[]
      */
     public function getChannelPlaylists($channel, $part = [], $optParams = []);
+
+    /**
+     * Get live videos from given channel.
+     *
+     * @param string $channel
+     * @param array $part
+     * @param array $optParams
+     * @return mixed
+     */
+    public function getChannelLiveVideos(string $channel, $part = [], $optParams = []);
 }
