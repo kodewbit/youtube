@@ -6,6 +6,7 @@ use Google_Service_YouTube;
 use Google_Service_YouTube_ChannelListResponse;
 use Google_Service_YouTube_PlaylistListResponse;
 use Google_Service_YouTube_SearchListResponse;
+use Google_Service_YouTube_VideoListResponse;
 use Illuminate\Support\Collection;
 
 interface YouTube
@@ -74,6 +75,16 @@ interface YouTube
      * @return mixed
      */
     public function getChannelLiveVideos(string $channel, $part = [], $optParams = []);
+
+    /**
+     * Get the most popular videos in a given region.
+     *
+     * @param string $region
+     * @param array $part
+     * @param array $optParams
+     * @return Collection|Google_Service_YouTube_VideoListResponse[]
+     */
+    public function getPopularVideos(string $region, $part = [], $optParams = []);
 
     /**
      * Get videos related to a given video.

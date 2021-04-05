@@ -7,6 +7,7 @@ use Google_Service_YouTube;
 use Google_Service_YouTube_ChannelListResponse;
 use Google_Service_YouTube_PlaylistListResponse;
 use Google_Service_YouTube_SearchListResponse;
+use Google_Service_YouTube_VideoListResponse;
 use Illuminate\Support\Collection;
 use Kodewbit\YouTube\Contracts\YouTube as YouTubeInterface;
 use Kodewbit\YouTube\Exceptions\InvalidConfigurationException;
@@ -212,6 +213,35 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
         ]);
 
         return collect($this->search->listSearch($part, $optParams)->getItems());
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @param string $region
+     * @param array $part
+     * @param array $optParams
+     * @return Collection|Google_Service_YouTube_VideoListResponse[]
+     */
+    public function getPopularVideos(string $region, $part = [], $optParams = [])
+    {
+        $part = array_merge($part, [
+            'id',
+            'snippet',
+            'contentDetails',
+            'player',
+            'statistics',
+            'status',
+            'suggestions',
+            'topicDetails',
+        ]);
+
+        $optParams = array_merge($optParams, [
+            'chart' => 'mostPopular',
+            'regionCode' => $region,
+        ]);
+
+        return collect($this->videos->listVideos($part, $optParams)->getItems());
     }
 
     /**
