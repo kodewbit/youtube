@@ -17,6 +17,7 @@ use Kodewbit\YouTube\Contracts\YouTube as YouTubeInterface;
  * @method static \Kodewbit\YouTube\YouTube getChannelDetails($channel, $part = [], $optParams = [])
  * @method static \Kodewbit\YouTube\YouTube getChannelPlaylists($channel, $part = [], $optParams = [])
  * @method static \Kodewbit\YouTube\YouTube getChannelLiveVideos(string $channel, $part = [], $optParams = [])
+ * @method static \Kodewbit\YouTube\YouTube getRelatedVideos(string $video, $part = [], $optParams = [])
  */
 class YouTube extends Facade
 {

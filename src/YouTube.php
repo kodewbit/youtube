@@ -195,7 +195,7 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
      * @param string $channel
      * @param array $part
      * @param array $optParams
-     * @return Collection
+     * @return Collection|Google_Service_YouTube_PlaylistListResponse[]
      */
     public function getChannelLiveVideos(string $channel, $part = [], $optParams = [])
     {
@@ -209,6 +209,29 @@ class YouTube extends Google_Service_YouTube implements YouTubeInterface
             'order' => 'date',
             'eventType' => 'live',
             'channelId' => $channel
+        ]);
+
+        return collect($this->search->listSearch($part, $optParams)->getItems());
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @param string $video
+     * @param array $part
+     * @param array $optParams
+     * @return Collection|Google_Service_YouTube_SearchListResponse[]
+     */
+    public function getRelatedVideos(string $video, $part = [], $optParams = [])
+    {
+        $part = array_merge($part, [
+            'id',
+            'snippet'
+        ]);
+
+        $optParams = array_merge($optParams, [
+            'type' => 'video',
+            'relatedToVideoId' => $video
         ]);
 
         return collect($this->search->listSearch($part, $optParams)->getItems());

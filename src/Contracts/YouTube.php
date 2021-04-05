@@ -74,4 +74,14 @@ interface YouTube
      * @return mixed
      */
     public function getChannelLiveVideos(string $channel, $part = [], $optParams = []);
+
+    /**
+     * Get videos related to a given video.
+     *
+     * @param string $video
+     * @param array $part
+     * @param array $optParams
+     * @return Collection|Google_Service_YouTube_SearchListResponse[]
+     */
+    public function getRelatedVideos(string $video, $part = [], $optParams = []);
 }
