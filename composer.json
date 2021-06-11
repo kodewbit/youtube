@@ -1,7 +1,10 @@
 {
     "name": "kodewbit/youtube",
     "description": "A small library that acts as a Laravel wrapper for YouTube data API v3.",
-    "keywords": ["youtube", "api"],
+    "keywords": [
+        "youtube",
+        "api"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [
